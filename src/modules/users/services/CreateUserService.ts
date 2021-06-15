@@ -1,0 +1,49 @@
+import { InjectRepository } from 'typeorm-typedi-extensions';
+import { DeepPartial, Equal, Repository } from 'typeorm';
+import { hash } from 'bcryptjs';
+import { Service } from 'typedi';
+
+import { HttpStatusError } from '@shared/errors/HttpStatusError';
+
+import { Role } from '@database/entities/role';
+import { User } from '@database/entities/user';
+
+import { HttpStatus } from '@shared/web/HttpStatus';
+
+import { CreateUserProps } from '../types';
+
+@Service()
+export class CreateUserService {
+  @InjectRepository(User)
+  userRepository: Repository<User>;
+
+  @InjectRepository(Role)
+  roleRepository: Repository<Role>;
+
+  async create({ email, password }: CreateUserProps): Promise<User> {
+    const exists = await this.userRepository.findOne({
+      where: { email },
+    });
+
+    if (exists) {
+      throw new HttpStatusError(HttpStatus.BAD_REQUEST, 'Email já utilizado.');
+    }
+
+    const user: DeepPartial<User> = {
+      email,
+      password: await hash(password, 8),
+    };
+
+    const role = await this.roleRepository.findOne({
+      where: { initials: Equal('USER') },
+      select: ['id'],
+    });
+    user.roles = [role];
+
+    const newUser = await this.userRepository.save(user);
+
+    delete user.password;
+
+    return newUser;
+  }
+}
