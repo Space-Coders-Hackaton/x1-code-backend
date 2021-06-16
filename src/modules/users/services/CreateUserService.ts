@@ -14,11 +14,13 @@ import { CreateUserProps } from '../types';
 
 @Service()
 export class CreateUserService {
-  @InjectRepository(User)
-  userRepository: Repository<User>;
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
 
-  @InjectRepository(Role)
-  roleRepository: Repository<Role>;
+    @InjectRepository(Role)
+    private roleRepository: Repository<Role>,
+  ) {}
 
   async create({ email, password }: CreateUserProps): Promise<User> {
     const exists = await this.userRepository.findOne({

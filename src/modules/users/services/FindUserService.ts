@@ -10,8 +10,10 @@ import { createUserDTO } from './utils/create-user-dto';
 
 @Service()
 export class FindUserService {
-  @InjectRepository(User)
-  private repository: Repository<User>;
+  constructor(
+    @InjectRepository(User)
+    private repository: Repository<User>,
+  ) {}
 
   public async findPage(query: UserQueryParams): Promise<Page<UserDTO>> {
     const where: FindConditions<User> = {};

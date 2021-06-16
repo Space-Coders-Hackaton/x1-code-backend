@@ -9,8 +9,10 @@ import { UpdateUserProps } from '../types';
 
 @Service()
 export class UpdateUserService {
-  @InjectRepository(User)
-  repository: Repository<User>;
+  constructor(
+    @InjectRepository(User)
+    private repository: Repository<User>,
+  ) {}
 
   async update(id: number, partial: UpdateUserProps): Promise<User> {
     const user = await this.repository.findOne({ where: { id } });

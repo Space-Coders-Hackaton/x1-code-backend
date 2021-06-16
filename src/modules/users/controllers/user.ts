@@ -35,17 +35,19 @@ import {
 @Service()
 @JsonController('/users')
 export class UsersController {
-  @Inject()
-  private createUserService: CreateUserService;
+  constructor(
+    @Inject()
+    private createUserService: CreateUserService,
 
-  @Inject()
-  private readonly findUserService: FindUserService;
+    @Inject()
+    private readonly findUserService: FindUserService,
 
-  @Inject()
-  private updateUserService: UpdateUserService;
+    @Inject()
+    private updateUserService: UpdateUserService,
 
-  @InjectRepository(User)
-  private repository: Repository<User>;
+    @InjectRepository(User)
+    private repository: Repository<User>,
+  ) {}
 
   @Authorized(['ADM'])
   @Get()

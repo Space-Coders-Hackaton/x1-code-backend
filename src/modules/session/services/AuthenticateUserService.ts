@@ -14,8 +14,10 @@ import { AuthRequest, AuthResponse } from '../types';
 
 @Service()
 export class AuthenticateUserService {
-  @InjectRepository(User)
-  repository: Repository<User>;
+  constructor(
+    @InjectRepository(User)
+    private repository: Repository<User>,
+  ) {}
 
   async authenticate({ email, password }: AuthRequest): Promise<AuthResponse> {
     const user = await this.repository.findOne({
