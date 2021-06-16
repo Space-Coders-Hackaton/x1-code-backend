@@ -1,4 +1,4 @@
-import { LIMITER } from 'config/env';
+import { LIMITER } from '@config/env';
 import { Request, Response } from 'express';
 import { RateLimiterMemory, RateLimiterRedis } from 'rate-limiter-flexible';
 import { ExpressMiddlewareInterface, Middleware } from 'routing-controllers';

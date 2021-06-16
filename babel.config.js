@@ -9,11 +9,10 @@ module.exports = {
         '@config': './src/config',
         '@models': './src/models',
         '@modules': './src/modules',
-        '@middlewares': './src/middlewares',
-        '@services': './src/services',
         '@shared': './src/shared',
         '@utils': './src/utils',
-        '@errors': './src/errors',
+        '@errors': './src/shared/errors',
+        '@database': './src/database',
       }
     }],
     'babel-plugin-transform-typescript-metadata',

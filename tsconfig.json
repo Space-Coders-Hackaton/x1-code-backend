@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./src",
+    "allowJs": true,
     "paths": {
       "@config/*": [
         "config/*"
@@ -20,12 +21,6 @@
       ],
       "@models/*": [
         "models/*"
-      ],
-      "@middlewares/*": [
-        "middlewares/*"
-      ],
-      "@services/*": [
-        "services/*"
       ],
       "@shared/*": [
         "shared/*"

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { SERVER_PORT, SERVER_URL, NODE_ENV, SHOW_DOCS } from 'config/env';
+import { SERVER_PORT, SERVER_URL, NODE_ENV, SHOW_DOCS } from '@config/env';
 
 type Greeting = {
   message: string;
