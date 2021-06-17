@@ -112,13 +112,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
         <sub><b>Gilvan Araújo</b></sub>
       </a>
     </td>
-    <td align="center">
-      <a href="https://github.com/JuDCraide">
-        <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/47929434?v=4" width="100px;" alt=""/>
-        <br />
-        <sub><b>Júlia D. Craide</b></sub>
-      </a>
-    </td>
   </tr>
 </table>
 
