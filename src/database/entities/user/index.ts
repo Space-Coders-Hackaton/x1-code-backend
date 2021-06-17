@@ -7,9 +7,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { Role } from '../role';
+import { Correction } from '../correction';
 
 @Entity('user')
 export class User {
@@ -38,6 +40,9 @@ export class User {
     },
   })
   roles: Role[];
+
+  @OneToMany(() => Correction, (correction) => correction.user)
+  corrections: Correction[];
 
   @Exclude()
   @CreateDateColumn({
