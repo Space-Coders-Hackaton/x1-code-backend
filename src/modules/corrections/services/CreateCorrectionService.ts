@@ -1,6 +1,7 @@
 import { Service } from 'typedi';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { Repository } from 'typeorm';
+import { differenceInWeeks } from 'date-fns';
 
 import { Correction } from '@database/entities/correction';
 import { User } from '@database/entities/user';
@@ -28,6 +29,13 @@ export class CreateCorrectionService {
     passed_tests,
     repository_url,
   }: CreateCorrectionProps): Promise<Correction> {
+    const correctionExists = await this.correctionRepository.findOne({
+      where: { user_id, challenge_slug },
+    });
+    if (correctionExists && differenceInWeeks(correctionExists.created_at, new Date()) < 1) {
+      throw new HttpStatusError(HttpStatus.FORBIDDEN, 'Limite de uma solução por semana.');
+    }
+
     const checkUserExists = this.userRepository.findOne(user_id);
     if (!checkUserExists) {
       throw new HttpStatusError(HttpStatus.NOT_FOUND, 'Usuário não encontrado.');
