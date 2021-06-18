@@ -58,7 +58,7 @@ export class UsersController {
   @Authorized(['USER'])
   @Get('/:id')
   @OnUndefined(404)
-  async show(@Param('id') id: number, @CurrentUser() session: Session): Promise<UserDTO> {
+  async show(@Param('id') id: string, @CurrentUser() session: Session): Promise<UserDTO> {
     if (session.roles.every((role) => role !== 'ADM') && session.id !== id) {
       throw new HttpStatusError(HttpStatus.FORBIDDEN, 'Permissão invalida para este recurso.');
     }
@@ -72,7 +72,7 @@ export class UsersController {
 
   @Authorized(['USER'])
   @Put('/:id')
-  async update(@Param('id') id: number, @Body() user: UpdateUserProps, @CurrentUser() session: Session): Promise<User> {
+  async update(@Param('id') id: string, @Body() user: UpdateUserProps, @CurrentUser() session: Session): Promise<User> {
     if (session.roles.every((role) => role !== 'ADM') && session.id !== id) {
       throw new HttpStatusError(HttpStatus.FORBIDDEN, 'Permissão invalida para este recurso.');
     }
@@ -83,7 +83,7 @@ export class UsersController {
   @Delete('/:id')
   @OnUndefined(200)
   @OnNull(404)
-  async destroy(@Param('id') id: number): Promise<null | undefined> {
+  async destroy(@Param('id') id: string): Promise<null | undefined> {
     const user = await this.repository.findOne({ where: { id } });
 
     if (!user) {

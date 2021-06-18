@@ -1,6 +1,9 @@
-import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty, Matches } from 'class-validator';
 
 export class UpdateUserProps {
+  @IsString({ message: 'Informe um nome válido.' })
+  name: string;
+
   @IsEmail(
     { allow_ip_domain: false },
     {

@@ -14,7 +14,7 @@ export class UpdateUserService {
     private repository: Repository<User>,
   ) {}
 
-  async update(id: number, partial: UpdateUserProps): Promise<User> {
+  async update(id: string, partial: UpdateUserProps): Promise<User> {
     const user = await this.repository.findOne({ where: { id } });
 
     if (!user) throw new NotFoundError();

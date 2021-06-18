@@ -36,11 +36,11 @@ export class FindUserService {
     return new Page(await Promise.all(users), count, page, size);
   }
 
-  public async findOne(id: number): Promise<UserDTO> {
+  public async findOne(id: string): Promise<UserDTO> {
     return createUserDTO(
       await this.repository.findOne({
         where: { id },
-        select: ['id', 'email'],
+        select: ['id', 'name', 'email'],
         relations: ['roles'],
       }),
     );
