@@ -1,10 +1,10 @@
 import { Difficulty } from '@database/entities/correction';
-import { IsNumber, IsNotEmpty, IsEnum, IsString, IsUrl } from 'class-validator';
+import { IsNumber, IsNotEmpty, IsEnum, IsString, IsUrl, IsUUID } from 'class-validator';
 
 export class CreateCorrectionProps {
   @IsNotEmpty({ message: 'Informe o ID do usuário.' })
-  @IsNumber({ allowNaN: false, allowInfinity: false }, { message: 'ID de usuário inválido.' })
-  user_id: number;
+  @IsUUID('4', { message: 'ID de usuário inválido.' })
+  user_id: string;
 
   @IsNotEmpty({ message: 'Informe o SLUG do desafio.' })
   @IsString({ message: 'ID do desafio inválido.' })

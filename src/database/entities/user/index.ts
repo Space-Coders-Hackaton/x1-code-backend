@@ -6,17 +6,18 @@ import {
   ManyToMany,
   CreateDateColumn,
   UpdateDateColumn,
-  PrimaryGeneratedColumn,
   OneToMany,
+  PrimaryColumn,
 } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 import { Role } from '../role';
 import { Correction } from '../correction';
 
 @Entity('user')
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn()
+  id: string;
 
   @Column('varchar', { name: 'name' })
   name: string;
@@ -58,4 +59,10 @@ export class User {
     name: 'updated_at',
   })
   updated_at: Date;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }

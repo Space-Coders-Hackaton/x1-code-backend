@@ -1,5 +1,5 @@
 import { InjectRepository } from 'typeorm-typedi-extensions';
-import { DeepPartial, Equal, Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 import { hash } from 'bcryptjs';
 import { Service } from 'typedi';
 
@@ -23,30 +23,30 @@ export class CreateUserService {
   ) {}
 
   async create({ name, email, password }: CreateUserProps): Promise<User> {
-    const exists = await this.userRepository.findOne({
+    const userAlreadyExists = await this.userRepository.findOne({
       where: { email },
     });
 
-    if (exists) {
+    if (userAlreadyExists) {
       throw new HttpStatusError(HttpStatus.BAD_REQUEST, 'Email já esta sendo utilizado.');
     }
-
-    const user: DeepPartial<User> = {
-      name,
-      email,
-      password: await hash(password, 8),
-    };
 
     const role = await this.roleRepository.findOne({
       where: { initials: Equal('USER') },
       select: ['id'],
     });
-    user.roles = [role];
 
-    const newUser = await this.userRepository.save(user);
+    const user = this.userRepository.create({
+      name,
+      email,
+      password: await hash(password, 8),
+      roles: [role],
+    });
+
+    await this.userRepository.save(user);
 
     delete user.password;
 
-    return newUser;
+    return user;
   }
 }

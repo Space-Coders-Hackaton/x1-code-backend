@@ -43,7 +43,7 @@ export class CreateCorrectionService {
       where: { user_id, challenge_slug },
     });
 
-    const daysDifference = differenceInDays(correctionExists.created_at, new Date());
+    const daysDifference = differenceInDays(correctionExists?.created_at, new Date());
     if (correctionExists && daysDifference < 7) {
       const correctionLimitTemplate = path.resolve(__dirname, '..', 'views', 'correction_limit.hbs');
 

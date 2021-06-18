@@ -14,7 +14,7 @@ export class Correction {
   id: string;
 
   @Column()
-  user_id: number;
+  user_id: string;
 
   @ManyToOne(() => User, (user) => user.corrections)
   @JoinColumn({ name: 'user_id' })

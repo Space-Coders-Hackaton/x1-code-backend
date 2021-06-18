@@ -1,4 +1,4 @@
 export class Session {
-  id: number;
+  id: string;
   roles: string[];
 }

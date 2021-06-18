@@ -19,7 +19,7 @@ export const CurrentUserChecker = async (action: Action): Promise<Session> => {
     const { sub: id, roles } = verify(token, TOKEN_SECRET) as Token;
 
     return {
-      id: Number(id),
+      id,
       roles,
     };
   } catch {
