@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express from 'express';
 import cors from 'cors';
+import sgMail from '@sendgrid/mail';
 
 import { SERVER_PORT, SERVER_URL } from './config/env';
 import { started } from './utils/started';
@@ -11,6 +12,8 @@ import { routes } from './routes';
 import './database';
 
 const app = express();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.use(express.json());
 app.use(cors());
