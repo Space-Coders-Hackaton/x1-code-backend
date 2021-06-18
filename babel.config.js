@@ -7,7 +7,6 @@ module.exports = {
     ['module-resolver', {
       alias: {
         '@config': './src/config',
-        '@models': './src/models',
         '@modules': './src/modules',
         '@shared': './src/shared',
         '@utils': './src/utils',
@@ -17,6 +16,6 @@ module.exports = {
     }],
     'babel-plugin-transform-typescript-metadata',
     ['@babel/plugin-proposal-decorators', { 'legacy': true }],
-    ['@babel/plugin-proposal-class-properties', { 'loose': false }]
+    ['@babel/plugin-proposal-class-properties', { 'loose': true }]
   ],
 }

@@ -1,39 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "es5",
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
+    "baseUrl": "./src",
+    "allowJs": true,
+
     "esModuleInterop": true,
-    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
-    "allowJs": true,
+    "resolveJsonModule": true,
+
     "paths": {
-      "@config/*": [
-        "config/*"
-      ],
-      "@database/*": [
-        "database/*"
-      ],
-      "@models/*": [
-        "models/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@errors/*": [
-        "errors/*"
-      ],
-      "@modules/*": [
-        "modules/*"
-      ],
+      "@config/*": ["config/*"],
+      "@database/*": ["database/*"],
+      "@shared/*": ["shared/*"],
+      "@utils/*": ["utils/*"],
+      "@errors/*": ["shared/errors/*"],
+      "@modules/*": ["modules/*"],
     },
   },
   "include": [

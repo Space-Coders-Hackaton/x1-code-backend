@@ -1,29 +1,17 @@
-FROM node:12 as BUILDER
+FROM node:14-alpine
 
-WORKDIR /usr/src/app
-
-COPY . .
-
-RUN yarn install && yarn tsc && yarn build
-
-FROM node:12-alpine
-
-ENV NODE_ENV=production
-
-WORKDIR /usr/src/app
-
-COPY --from=BUILDER /usr/src/app/dist /dist
-
-COPY ormconfig.js ormconfig.js
+WORKDIR /usr/app
 
 COPY package.json package.json
 
-COPY yarn.lock yarn.lock
+COPY ormconfig.json ormconfig.json
 
 COPY ./.env ./.env
 
-RUN yarn install --production
+RUN npm install
+
+COPY . .
 
 EXPOSE ${SERVER_PORT}
 
-CMD [ "node", "dist/server.js" ]
+CMD ["npm", "run", "dev:server"]

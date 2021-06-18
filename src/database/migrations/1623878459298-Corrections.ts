@@ -13,8 +13,7 @@ export class Corrections1623878459298 implements MigrationInterface {
           },
           {
             name: 'user_id',
-            type: 'bigint',
-            isNullable: false,
+            type: 'uuid',
           },
           {
             name: 'challenge_slug',
