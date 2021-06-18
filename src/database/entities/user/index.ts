@@ -18,6 +18,9 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column('varchar', { name: 'name' })
+  name: string;
+
   @Column('varchar', {
     name: 'email',
   })
