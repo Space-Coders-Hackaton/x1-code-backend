@@ -36,10 +36,12 @@ export class CreateUserService {
       select: ['id'],
     });
 
+    const hashedPassword = await hash(password, 8);
+
     const user = this.userRepository.create({
       name,
       email,
-      password: await hash(password, 8),
+      password: hashedPassword,
       roles: [role],
     });
 
