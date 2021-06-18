@@ -1,15 +1,35 @@
-version: '3.3'
+version: '3.9'
 
 services:
-  api:
-    build: ./
+  database:
+    image: postgres
+    container_name: x1code_database
     restart: always
-    container_name: production-api-crud-container
-    network_mode: host
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    build: .
+    container_name: x1code
+    restart: always
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
+      - 9229:9229
     volumes:
-      - ./dist:/usr/src/app/dist
-      - ./.volumes/logs:/root/.npm/_logs
-    environment:
-      TZ: 'America/Sao_Paulo'
+      - .:/usr/src/app
+    links:
+      - database
+    depends_on:
+      - database
+    # environment:
+    #   - DB_COMPOSE_HOST=postgres
+
+volumes:
+  pgdata:
+    driver: local
