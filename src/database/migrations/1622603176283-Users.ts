@@ -1,15 +1,20 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
+const defaultID = uuid();
+const defaultName = 'Admin User';
 const defaultUser = 'admin@email.com';
 const defaultPass = '$2a$08$2fIEQty0rtpfO5hGLrXZbefjy8Lh5OFVNx../FnYS05mTzwKwkTVq';
 // DEFAULT PASS !123A123b
+
 export class Users1622603176283 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
         name: 'user',
         columns: [
-          { name: 'id', type: 'bigint', isGenerated: true, isPrimary: true, generationStrategy: 'increment' },
+          { name: 'id', type: 'uuid', isPrimary: true },
+          { name: 'name', type: 'varchar' },
           { name: 'email', type: 'varchar', isUnique: true },
           { name: 'password', type: 'varchar' },
           { name: 'created_at', type: 'timestamp', default: 'now()' },
@@ -35,7 +40,7 @@ export class Users1622603176283 implements MigrationInterface {
       new Table({
         name: 'user_role',
         columns: [
-          { name: 'user_id', type: 'bigint', isNullable: true },
+          { name: 'user_id', type: 'uuid', isNullable: true },
           { name: 'role_id', type: 'bigint', isNullable: true },
         ],
       }),
@@ -43,7 +48,7 @@ export class Users1622603176283 implements MigrationInterface {
 
     await queryRunner.createForeignKeys('user_role', [
       new TableForeignKey({
-        name: 'user_fk',
+        name: 'UserRoleUserID',
         columnNames: ['user_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'user',
@@ -51,7 +56,7 @@ export class Users1622603176283 implements MigrationInterface {
         onUpdate: 'CASCADE',
       }),
       new TableForeignKey({
-        name: 'role_fk',
+        name: 'UserRoleRoleID',
         columnNames: ['role_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'role',
@@ -70,9 +75,9 @@ export class Users1622603176283 implements MigrationInterface {
 
     await queryRunner.query(`
       INSERT INTO "user"
-          (email, "password")
+          (id, name, email, "password")
       VALUES
-          ('${defaultUser}', '${defaultPass}')
+          ('${defaultID}', '${defaultName}', '${defaultUser}', '${defaultPass}')
     `);
 
     await queryRunner.query(`
