@@ -33,6 +33,9 @@ export class User {
   })
   password: string;
 
+  @Column('varchar', { name: 'avatar' })
+  avatar: string;
+
   @ManyToMany(() => Role)
   @JoinTable({
     name: 'user_role',
