@@ -56,16 +56,17 @@ export const routes = (app: Express): void => {
     security: [{ jwt: [] }],
     // openapi: '3.0.0',
     info: {
-      title: 'CRUD-API',
+      title: 'X1 Code',
       version: '1.0.0',
-      description: 'This is a REST API application made with Express. It retrieves data from Manoel Neto.',
+      description: 'This is a REST API application of "X1 Code" project from Space Coders team.',
       license: {
         name: 'Licensed Under MIT',
         url: 'https://spdx.org/licenses/MIT.html',
       },
       contact: {
-        name: 'Manoel Neto',
-        url: 'https://progamo.com.br',
+        name: 'Space Coders',
+        url: 'https://xonecode.spacecoders.app',
+        email: 'spacecoders.team@gmail.com',
       },
     },
   });

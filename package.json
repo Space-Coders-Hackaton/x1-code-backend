@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "author": "Manoel Neto (Progamo) <maguserv@gmail.com>",
+  "author": "Space Coders (X1 Code) <spacecoders.team@gmail.com>",
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev": "ts-node-dev --inspect=0.0.0.0:9229 --transpile-only --ignore node_modules -r tsconfig-paths/register src/server.ts",
