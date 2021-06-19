@@ -1,4 +1,5 @@
 import { Inject, Service } from 'typedi';
+import { Express } from 'express';
 import { JsonController, Authorized, CurrentUser, Patch, UploadedFile } from 'routing-controllers';
 
 import { User } from '@database/entities/user';
