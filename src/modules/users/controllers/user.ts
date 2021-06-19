@@ -51,7 +51,7 @@ export class UsersController {
 
   @Authorized(['ADM'])
   @Get()
-  async index(@QueryParams() query: UserQueryParams): Promise<Page<UserDTO>> {
+  async list(@QueryParams() query: UserQueryParams): Promise<Page<UserDTO>> {
     return this.findUserService.findPage(query);
   }
 

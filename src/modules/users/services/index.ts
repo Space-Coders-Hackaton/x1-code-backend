@@ -2,3 +2,4 @@ export { CreateUserProps, UpdateUserProps, UserQueryParams, UserDTO } from '../t
 export { CreateUserService } from './CreateUserService';
 export { UpdateUserService } from './UpdateUserService';
 export { FindUserService } from './FindUserService';
+export { UpdateUserAvatarService } from './UpdateUserAvatarService';
