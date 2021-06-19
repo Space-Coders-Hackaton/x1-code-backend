@@ -51,14 +51,14 @@ e [Shawee](https://shawee.io/pt/).
 ### Entregas
 - [X] Deve ser possível entregar um desafio (upload de repo pelo github)
 - [X] Deve ser possível realizar a correção do desafio
-- [ ] Deve ser possível atribuir uma nota para a resolução do usuário
-- [ ] Deve ser possível adicionar pontos, de acordo com o desafio, para o usuário
-- [ ] Deve ser possível bloquear o desafio, para o usuário, por uma semana 
+- [x] Deve ser possível atribuir uma nota para a resolução do usuário
+- [x] Deve ser possível adicionar pontos, de acordo com o desafio, para o usuário
+- [x] Deve ser possível bloquear o desafio, para o usuário, por uma semana
 
 ### Ranking
-- [ ] Deve ser possível listar um rank de todo tempo
-- [ ] Deve ser possível listar um rank do mês atual
-- [ ] Deve ser possível listar um rank de um desafio específico
+- [x] Deve ser possível listar um rank de todo tempo
+- [x] Deve ser possível listar um rank do mês atual
+- [x] Deve ser possível listar um rank de um desafio específico
 
 ### Geral
 - [ ] Deve ser possível listar estatística do site (count de desafios e usuários)
