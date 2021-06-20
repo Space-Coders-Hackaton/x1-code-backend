@@ -25,6 +25,7 @@ const {
   CORRECTION_URL,
   PRISMIC_ACCESS_TOKEN,
   PRISMIC_ENDPOINT,
+  CORRECTION_TOKEN,
 } = process.env;
 
 const DB_URL = process.env.DATABASE_URL || process.env.DB_URL;
@@ -58,4 +59,5 @@ export {
   CORRECTION_URL,
   PRISMIC_ACCESS_TOKEN,
   PRISMIC_ENDPOINT,
+  CORRECTION_TOKEN,
 };
