@@ -3,13 +3,12 @@ import { InjectRepository } from 'typeorm-typedi-extensions';
 import { Equal, Repository } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import { Service } from 'typedi';
-import axios from 'axios';
 
 import { User } from '@database/entities/user';
 
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, TOKEN_EXPIRY, TOKEN_SECRET } from '@config/env';
+import { TOKEN_EXPIRY, TOKEN_SECRET } from '@config/env';
 import { Role } from '@database/entities/role';
-import { CreateUserGithubResponse } from '../types';
+import { CreateUserGithubProps, CreateUserGithubResponse } from '../types';
 
 @Service()
 export class CreateUserByGithubService {
@@ -21,31 +20,7 @@ export class CreateUserByGithubService {
     private roleRepository: Repository<Role>,
   ) {}
 
-  async create(code: string): Promise<CreateUserGithubResponse> {
-    if (!code) throw new NotFoundError('Código não encontrado.');
-
-    const oauthResponse = await axios.post(
-      'https://github.com/login/oauth/access_token',
-      {
-        client_id: GITHUB_CLIENT_ID,
-        client_secret: GITHUB_CLIENT_SECRET,
-        code,
-      },
-      {
-        headers: { accept: 'application/json' },
-      },
-    );
-
-    const { access_token } = oauthResponse.data;
-
-    const { data } = await axios.get('https://api.github.com/user', {
-      headers: {
-        Authorization: `token ${access_token}`,
-      },
-    });
-
-    const { name, email } = data;
-
+  async create({ name, email }: CreateUserGithubProps): Promise<CreateUserGithubResponse> {
     const userAlreadyExists = await this.userRepository.findOne({
       where: { email },
       relations: ['roles'],
