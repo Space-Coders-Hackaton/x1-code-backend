@@ -23,6 +23,7 @@ import { Session } from '@shared/auth';
 import { HttpStatusError } from '@shared/errors/HttpStatusError';
 import { HttpStatus } from '@shared/web/HttpStatus';
 import {
+  CreateUserByGithubService,
   CreateUserProps,
   CreateUserService,
   FindUserService,
@@ -31,6 +32,7 @@ import {
   UserDTO,
   UserQueryParams,
 } from '../services';
+import { CreateUserGithubResponse, GithubQueryParams } from '../types';
 
 @Service()
 @JsonController('/users')
@@ -45,9 +47,18 @@ export class UsersController {
     @Inject()
     private updateUserService: UpdateUserService,
 
+    @Inject()
+    private createUserByGithubService: CreateUserByGithubService,
+
     @InjectRepository(User)
     private repository: Repository<User>,
   ) {}
+
+  // Github
+  @Get('/github/callback')
+  async callback(@QueryParams() query: GithubQueryParams): Promise<CreateUserGithubResponse> {
+    return this.createUserByGithubService.create(query.code);
+  }
 
   @Authorized(['ADM'])
   @Get()

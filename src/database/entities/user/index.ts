@@ -36,6 +36,9 @@ export class User {
   @Column('varchar', { name: 'avatar' })
   avatar: string;
 
+  @Column('varchar', { name: 'github' })
+  github: boolean;
+
   @ManyToMany(() => Role)
   @JoinTable({
     name: 'user_role',
