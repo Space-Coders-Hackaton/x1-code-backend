@@ -21,6 +21,7 @@
       "@utils/*": ["utils/*"],
       "@errors/*": ["shared/errors/*"],
       "@modules/*": ["modules/*"],
+      "@lib/*": ["lib/*"],
     },
   },
   "include": [

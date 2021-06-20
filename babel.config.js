@@ -12,6 +12,7 @@ module.exports = {
         '@utils': './src/utils',
         '@errors': './src/shared/errors',
         '@database': './src/database',
+        '@lib': './src/lib',
       }
     }],
     'babel-plugin-transform-typescript-metadata',
