@@ -42,7 +42,7 @@ export class CorrectionsController {
 
   @Post('/')
   @OnUndefined(200)
-  async sendToCorrection(@Body() challenge: CreateCorrectionProps): Promise<undefined> {
+  async receive(@Body() challenge: CreateCorrectionProps): Promise<undefined> {
     await this.createCorrectionService.create(challenge);
     return undefined;
   }
