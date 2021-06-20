@@ -21,9 +21,11 @@ const {
   REDIS_PREFIX,
   TOKEN_SECRET,
   TOKEN_EXPIRY,
+  SENDGRID_API_KEY,
 } = process.env;
 
 const DB_URL = process.env.DATABASE_URL || process.env.DB_URL;
+const REDIS_URL = `redis://${process.env.REDIS_HOST}:${Number(process.env.REDIS_PORT)}`;
 const SERVER_PORT = Number(process.env.SERVER_PORT || process.env.PORT);
 const DB_LOGGING_LEVEL = process.env.DB_LOGGING_LEVEL?.split(',');
 
@@ -46,6 +48,8 @@ export {
   REDIS_PORT,
   REDIS_PASS,
   REDIS_PREFIX,
+  REDIS_URL,
   TOKEN_SECRET,
   TOKEN_EXPIRY,
+  SENDGRID_API_KEY,
 };
