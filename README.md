@@ -1,5 +1,5 @@
 <h1 align="center">
-    <a href="https://xonecode.vercel.app" alt="site do x1code" target="_blank"> X1Code </a>
+    <a href="https://xonecode.spacecoders.app" alt="site do x1code" target="_blank"> X1Code </a>
 </h1>
 
 <h3 align="center">
@@ -7,7 +7,7 @@
 </h3>
 
 <h4 align="center">
-	🚧 Em construção 🚧
+	🚧 MVP Finalizado 🚧
 </h4>
 
 Tabela de conteúdos
@@ -15,7 +15,6 @@ Tabela de conteúdos
 <!--ts-->
    * [Sobre o projeto](#-sobre-o-projeto)
    * [Funcionalidades](#-funcionalidades)
-   * [Como executar o projeto](#-como-executar-o-projeto)
    * [Tecnologias](#-tecnologias)
    * [Equipe SpaceCoders](#-equipe-spacecoders)
 <!--te-->
@@ -28,7 +27,7 @@ além disso o usuário participa de um ranking de usuários, onde quanto mais de
 participar do ranking.
 
 
-Projeto desenvolvido para o Code/Station hackathon feito pela [Rocketseat](https://blog.rocketseat.com.br/primeira-next-level-week/)
+Projeto desenvolvido para o Code/Station hackathon feito pela [Rocketseat](https://rocketseat.com.br)
 e [Shawee](https://shawee.io/pt/).
 
 ---
@@ -40,13 +39,6 @@ e [Shawee](https://shawee.io/pt/).
 ### Usuários
 - [X] Deve ser possível criar uma conta
 - [X] Deve ser possível se autenticar
-- [ ] Deve ser possível se autenticar com o Github (integração com NextAuth)
-
-### Profile
-- [ ] Deve ser possível exibir seu perfil
-- [ ] Deve ser possível editar seu perfil
-- [ ] Deve ser possível adicionar tecnologias em que possui experiência
-- [ ] Deve ser possível listar seus desafios completos
 
 ### Entregas
 - [X] Deve ser possível entregar um desafio (upload de repo pelo github)
@@ -61,12 +53,7 @@ e [Shawee](https://shawee.io/pt/).
 - [x] Deve ser possível listar um rank de um desafio específico
 
 ### Geral
-- [ ] Deve ser possível listar estatística do site (count de desafios e usuários)
-
----
-
-## 🚀 Como executar o projeto
-
+- [x] Deve ser possível listar estatística do site (count de desafios e usuários)
 
 ---
 
@@ -74,7 +61,13 @@ e [Shawee](https://shawee.io/pt/).
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **API**  ([NodeJS](https://nodejs.org/en/)  +  [TypeScript](https://www.typescriptlang.org/))
+- [NodeJS](https://nodejs.org/en/) + [Typescript](https://www.typescriptlang.org)
+    - [Express](https://expressjs.com/pt-br/)
+    - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+    - [Swagger](https://swagger.io)
+    - [Axios](https://github.com/axios/axios)
+    - [Prismic Client](https://prismic.io)
+    - [Handlebars](https://handlebarsjs.com)
 
 > Veja o arquivo  [package.json](https://github.com/Space-Coders-Hackaton/x1-code-backend/blob/main/package.json)
 
