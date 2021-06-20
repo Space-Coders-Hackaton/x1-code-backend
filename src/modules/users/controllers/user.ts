@@ -32,7 +32,7 @@ import {
   UserDTO,
   UserQueryParams,
 } from '../services';
-import { CreateUserGithubResponse, GithubQueryParams } from '../types';
+import { CreateUserGithubProps, CreateUserGithubResponse } from '../types';
 
 @Service()
 @JsonController('/users')
@@ -54,12 +54,6 @@ export class UsersController {
     private repository: Repository<User>,
   ) {}
 
-  // Github
-  @Get('/github/callback')
-  async callback(@QueryParams() query: GithubQueryParams): Promise<CreateUserGithubResponse> {
-    return this.createUserByGithubService.create(query.code);
-  }
-
   @Authorized(['ADM'])
   @Get()
   async list(@QueryParams() query: UserQueryParams): Promise<Page<UserDTO>> {
@@ -79,6 +73,11 @@ export class UsersController {
   @Post()
   async store(@Body() user: CreateUserProps): Promise<User> {
     return this.createUserService.create(user);
+  }
+
+  @Post('/github')
+  async createWithGithub(@Body() user: CreateUserGithubProps): Promise<CreateUserGithubResponse> {
+    return this.createUserByGithubService.create({ name: user.name, email: user.email });
   }
 
   @Authorized(['USER'])
