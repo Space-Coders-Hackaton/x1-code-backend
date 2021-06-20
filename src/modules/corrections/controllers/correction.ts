@@ -1,21 +1,22 @@
-import { Body, JsonController, Post } from 'routing-controllers';
+import { Authorized, Body, JsonController, OnUndefined, Post } from 'routing-controllers';
 import { Inject, Service } from 'typedi';
 
-import { Correction } from '@database/entities/correction';
-
-import { CreateCorrectionService } from '../services';
-import { CreateCorrectionProps } from '../types';
+import { SendChallengeToCorrectionService } from '../services';
+import { SendChallengeToCorrectionProps } from '../types';
 
 @Service()
 @JsonController('/corrections')
 export class CorrectionsController {
   constructor(
     @Inject()
-    private createCorrectionService: CreateCorrectionService,
+    private sendChallengeToCorrectionService: SendChallengeToCorrectionService,
   ) {}
 
-  @Post()
-  async store(@Body() correction: CreateCorrectionProps): Promise<Correction> {
-    return this.createCorrectionService.create(correction);
+  @Authorized(['USER'])
+  @Post('/send')
+  @OnUndefined(200)
+  async send(@Body() challenge: SendChallengeToCorrectionProps): Promise<undefined> {
+    await this.sendChallengeToCorrectionService.execute(challenge);
+    return undefined;
   }
 }
