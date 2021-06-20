@@ -9,8 +9,9 @@ import { Correction } from '@database/entities/correction';
 
 import { HttpStatus } from '@shared/web/HttpStatus';
 import { HttpStatusError } from '@shared/errors/HttpStatusError';
+import axios from 'axios';
+import { CORRECTION_URL } from '@config/env';
 import { SendChallengeToCorrectionProps } from '../types/SendChallengeToCorrectionProps';
-import { correctionQueue } from '../../..';
 
 @Service()
 export class SendChallengeToCorrectionService {
@@ -42,18 +43,13 @@ export class SendChallengeToCorrectionService {
     if (correctionExists && daysDifference < 7)
       throw new HttpStatusError(HttpStatus.FORBIDDEN, 'Limite de uma solução por semana.');
 
-    await correctionQueue.add(
-      {
-        user_id,
-        challenge_slug,
-        technology,
-        difficulty,
-        repository_url,
-        template_url,
-      },
-      {
-        attempts: 2,
-      },
-    );
+    await axios.post(`${CORRECTION_URL}/send`, {
+      user_id,
+      challenge_slug,
+      technology,
+      difficulty,
+      repository_url,
+      template_url,
+    });
   }
 }

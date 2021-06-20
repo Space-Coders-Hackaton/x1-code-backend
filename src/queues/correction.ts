@@ -30,3 +30,7 @@ correctionQueue.on('completed', async (job, result: IResultData) => {
 
   console.log(`Job completed with result ${result}`);
 });
+
+correctionQueue.on('failed', async (job, err) => {
+  console.error(err);
+});

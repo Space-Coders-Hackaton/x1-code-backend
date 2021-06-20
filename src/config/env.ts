@@ -22,6 +22,7 @@ const {
   TOKEN_SECRET,
   TOKEN_EXPIRY,
   SENDGRID_API_KEY,
+  CORRECTION_URL,
 } = process.env;
 
 const DB_URL = process.env.DATABASE_URL || process.env.DB_URL;
@@ -52,4 +53,5 @@ export {
   TOKEN_SECRET,
   TOKEN_EXPIRY,
   SENDGRID_API_KEY,
+  CORRECTION_URL,
 };
