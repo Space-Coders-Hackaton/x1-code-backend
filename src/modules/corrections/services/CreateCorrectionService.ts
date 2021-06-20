@@ -41,6 +41,7 @@ export class CreateCorrectionService {
 
     const correctionExists = await this.correctionRepository.findOne({
       where: { user_id, challenge_slug },
+      order: { created_at: 'DESC' },
     });
 
     const daysDifference = differenceInDays(correctionExists?.created_at, new Date());
